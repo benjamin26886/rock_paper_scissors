@@ -25,12 +25,17 @@ to display the results of each round and the winner at the end.
 
 #6: Use prompt() to get input from the user.
 */
-
+/*
 let computer_decision  = getComputerChoice();
-console.log(computer_decision);
 let player_decision = getPlayerChoice();
-console.log(player_decision);
-play(player_decision,computer_decision);
+
+
+let result  = play(player_decision,computer_decision);
+let boool = true;
+console.log(computer_decision);
+console.log(result);
+*/
+game();
 
 
 function getComputerChoice(){
@@ -66,13 +71,15 @@ function play(player_choice, computer_choice){
                 console.log("Draw");
             }
             else if(player_choice === "rock"){
-                console.log("You lose paper beats rock")
+                 console.log("You lose Paper beats Rock");
+                 return false;
             }
             else if(player_choice === "scissors"){
-                console.log("You win scissors beats paper");
+                 console.log("You win Scissors beats Paper");
+                 return true
             }
             else{
-                console.log("Incorrect input");
+                 console.log("Incorrect input");
             }
             break;
 
@@ -82,10 +89,12 @@ function play(player_choice, computer_choice){
                 console.log("Draw");
             }
             else if(player_choice === "paper"){
-                console.log("You win paper bears rock")
+                 console.log("You win Paper bears Rock");
+                 return true;
             }
             else if(player_choice === "scissors"){
-                console.log("you lose rock beats scissors");
+                 console.log("you lose rock beats Scissors");
+                 return false;
             }
             else{
                 console.log("Incorrect input");
@@ -94,20 +103,43 @@ function play(player_choice, computer_choice){
 
         case "Scisssors": // if Rock  
             if(player_choice === "rock"){ // if player choise is paper out draw
-                console.log("You win Rock beats scissors");
+                console.log("You win Rock beats Scissors");
+                return true;
             }
             else if(player_choice === "paper"){
-                console.log("You lose Scissors beats paper")
+                 console.log("You lose Scissors beats Paper");
+                 return false;
             }
             else if(player_choice === "scissors"){
-                console.log("Draw");
+                return "Draw";
             }
             else{
-                console.log("Incorrect input");
+                return "Incorrect input";
             }
             break;
           /**You must write a case for Scissors */
         }
+    }
+
+    function game(){
+        let win = 0;
+        let loss = 0;
+
+        for(let round = 1; round < 6; round++){
+            let player_decision = getPlayerChoice();
+            let computer_decision  = getComputerChoice();
+            let result = play(player_decision,computer_decision);
+            if(result === true){
+                win+=1;
+            }
+            else if(result === false){
+                loss+=1;
+            }
+            //console.log(round);
+        }
+        console.log('You have won ' + win + ' times');
+        console.log('You have lost ' + loss + ' times');
+
     }
 
 

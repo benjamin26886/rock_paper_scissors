@@ -131,9 +131,11 @@ function play(player_choice, computer_choice){
             let result = play(player_decision,computer_decision);
             if(result === true){
                 win+=1;
+                console.log("Round: " + round + " Player 1 wins")
             }
             else if(result === false){
                 loss+=1;
+                console.log("Round: " + round + " Computer wins")
             }
             //console.log(round);
         }

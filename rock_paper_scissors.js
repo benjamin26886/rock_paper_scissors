@@ -1,7 +1,7 @@
-console.log("Hello World");
-console.log("This javascript script is working ");
 
 /*
+Author: Nicholas Benjamin
+Purpose: Demonstrate the use of 
 Pseudocode --- 
 #1:Begin with a function called getComputerChoice that will randomly return either 
 ‘Rock’, ‘Paper’ or ‘Scissors’.
@@ -26,19 +26,95 @@ to display the results of each round and the winner at the end.
 #6: Use prompt() to get input from the user.
 */
 
+let computer_decision  = getComputerChoice();
+console.log(computer_decision);
+let player_decision = getPlayerChoice();
+console.log(player_decision);
+play(player_decision,computer_decision);
+
 
 function getComputerChoice(){
-    const choice = Math.floor(Math.random() * 3); //This generates random numbers from the range of 0 to 2
+    const choice = Math.floor(Math.random() * 3); //This generates random numbers from the range of 0 to 2 // increas number multipled to increase range  of options 
+    let descision; // error missing initializers
     switch (choice) {
         case 2:
-            return "Scisssors";
+            descision = "Scisssors";
             break;
         case 1:
-            return "Paper";
+            descision= "Rock";
             break;
         case 0:
-            return "Rock";
+            descision = "Paper";
             break;
+        }
+        return descision;
+    }
+
+function getPlayerChoice(){
+    let choice = prompt("Enter: Rock, Paper, or Scissors");
+    choice = choice.toLowerCase();
+    return choice;
+}
+function gameLogic(){
+    
+}
+/**Debug below: logic not working for rock*/
+function play(player_choice, computer_choice){
+    switch(computer_choice){ // the switch staement wikk compare the computer's choice to the cases
+        case "Paper": // if paper  
+            if(player_choice === "paper"){ // if player choise is paper out draw
+                console.log("Draw");
+            }
+            else if(player_choice === "rock"){
+                console.log("You lose paper beats rock")
+            }
+            else if(player_choice === "scissors"){
+                console.log("You win scissors beats paper");
+            }
+            else{
+                console.log("Incorrect input");
+            }
+            break;
+
+          /**You must write a case for Rock */
+        case "Rock": // if Rock  
+            if(player_choice === "rock"){ // if player choise is paper out draw
+                console.log("Draw");
+            }
+            else if(player_choice === "paper"){
+                console.log("You win paper bears rock")
+            }
+            else if(player_choice === "scissors"){
+                console.log("you lose rock beats scissors");
+            }
+            else{
+                console.log("Incorrect input");
+            }
+            break;
+
+        case "Scisssors": // if Rock  
+            if(player_choice === "rock"){ // if player choise is paper out draw
+                console.log("You win Rock beats scissors");
+            }
+            else if(player_choice === "paper"){
+                console.log("You lose Scissors beats paper")
+            }
+            else if(player_choice === "scissors"){
+                console.log("Draw");
+            }
+            else{
+                console.log("Incorrect input");
+            }
+            break;
+          /**You must write a case for Scissors */
         }
     }
 
+
+/*
+function main(){
+    const computer_choice = getComputerChoice();
+    console.log(computer_choice);
+}
+    main();
+*/

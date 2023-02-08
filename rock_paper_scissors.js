@@ -35,7 +35,15 @@ let boool = true;
 console.log(computer_decision);
 console.log(result);
 */
-game();
+
+
+const container = document.createElement('div');
+container.style.cssText = 'color: blue; background: green; width: 200px; height: 200px';
+document.body.appendChild(container);
+
+
+console.log(container);
+
 
 
 function getComputerChoice(){
@@ -55,14 +63,12 @@ function getComputerChoice(){
         return descision;
     }
 
-function getPlayerChoice(){
-    let choice = prompt("Enter: Rock, Paper, or Scissors");
-    choice = choice.toLowerCase();
+function getPlayerChoice(decison){
+    let choice = decison;
+    //choice = choice.toLowerCase();
     return choice;
 }
-function gameLogic(){
-    
-}
+
 /**Debug below: logic not working for rock*/
 function play(player_choice, computer_choice){
     switch(computer_choice){ // the switch staement wikk compare the computer's choice to the cases
@@ -121,34 +127,82 @@ function play(player_choice, computer_choice){
         }
     }
 
-    function game(){
+    function playRound(playerChoice, computerChoice){
+        play(playerChoice,computerChoice);
+
+    }
+
+/*
+    function game(player_decision){
         let win = 0;
         let loss = 0;
-
-        for(let round = 1; round < 6; round++){
-            let player_decision = getPlayerChoice();
+        let round = 0;
+        
+        for(let round = 1; round < 5; round++){
+            //let player_decision = getPlayerChoice();
             let computer_decision  = getComputerChoice();
             let result = play(player_decision,computer_decision);
             if(result === true){
                 win+=1;
-                console.log("Round: " + round + " Player 1 wins")
+                //console.log("Round: " + round + " Player 1 wins")
             }
             else if(result === false){
                 loss+=1;
-                console.log("Round: " + round + " Computer wins")
+                //console.log("Round: " + round + " Computer wins")
             }
             //console.log(round);
+        }  
+        //console.log('You have won ' + win + ' times');
+        //console.log('You have lost ' + loss + ' times');
+        const message = document.createElement('p');
+        if(round >=5 && win > loss){
+            message.textContent = 'You have won ' + win + ' times';
         }
-        console.log('You have won ' + win + ' times');
-        console.log('You have lost ' + loss + ' times');
-
+        else if(round >=5&& loss > win){
+            messgae.textContent = 'You have lost ' + loss + ' times';
+        }
+        else if(round === 5 && loss === win){
+            message.textContent = "Draw"
+        }
+        
+        container.appendChild(message);
+        const lostMessgae  = document.createElement('p');
     }
+    */
 
 
-/*
-function main(){
-    const computer_choice = getComputerChoice();
-    console.log(computer_choice);
-}
-    main();
-*/
+    //The section below shows the different choices between rock, paper and scissors 
+        const rock = document.querySelector('#rock');
+        rock.addEventListener('click',function(){
+        let playerDecison = getPlayerChoice('rock'); // Here the player's choice is already set before round is played 
+        let computerDecision = getComputerChoice();
+        playRound(playerDecison,computerDecision);
+           
+        });
+
+        const paper = document.querySelector('#paper');
+        paper.addEventListener('click',function(){
+        let playerDecison = getPlayerChoice('paper'); // Here the player's choice is already set before round is played 
+        let computerDecision = getComputerChoice();
+        playRound(playerDecison,computerDecision);
+        
+        });
+
+        const scissors = document.querySelector('#scissors');
+        scissors.addEventListener('click',function(){
+        let playerDecison = getPlayerChoice('scissors'); // Here the player's choice is already set before round is played 
+        let computerDecision = getComputerChoice();
+        playRound(playerDecison,computerDecision);  
+        });
+        
+        //
+        
+        
+
+
+
+        
+
+    
+
+

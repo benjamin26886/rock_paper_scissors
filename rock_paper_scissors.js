@@ -41,6 +41,10 @@ const container = document.createElement('div');
 container.style.cssText = 'color: blue; background: green; width: 200px; height: 200px';
 document.body.appendChild(container);
 
+let p  = document.createElement('p');
+container.appendChild(p);
+
+
 
 console.log(container);
 
@@ -71,56 +75,61 @@ function getPlayerChoice(decison){
 
 /**Debug below: logic not working for rock*/
 function play(player_choice, computer_choice){
+
     switch(computer_choice){ // the switch staement wikk compare the computer's choice to the cases
         case "Paper": // if paper  
             if(player_choice === "paper"){ // if player choise is paper out draw
-                console.log("Draw");
+                //console.log("Draw");
+                p.textContent = "Draw";
             }
             else if(player_choice === "rock"){
-                 console.log("You lose Paper beats Rock");
+                 //console.log("You lose Paper beats Rock");
+                 p.textContent = "You lose Paper beats Rock";
                  return false;
             }
             else if(player_choice === "scissors"){
-                 console.log("You win Scissors beats Paper");
+                 //console.log("You win Scissors beats Paper");
+                 p.textContent = "You win Scissors beats Paper";
                  return true
             }
             else{
-                 console.log("Incorrect input");
+                 //console.log("Incorrect input");
+                 p.textContent = "Incorrect input";
             }
             break;
 
           /**You must write a case for Rock */
         case "Rock": // if Rock  
             if(player_choice === "rock"){ // if player choise is paper out draw
-                console.log("Draw");
+                p.textContent = "Draw";
             }
             else if(player_choice === "paper"){
-                 console.log("You win Paper bears Rock");
+                 p.textContent ="You win Paper bears Rock";
                  return true;
             }
             else if(player_choice === "scissors"){
-                 console.log("you lose rock beats Scissors");
+                 p.textContent = "you lose rock beats Scissors";
                  return false;
             }
             else{
-                console.log("Incorrect input");
+                p.textContent = "Incorrect input";
             }
             break;
 
         case "Scisssors": // if Rock  
             if(player_choice === "rock"){ // if player choise is paper out draw
-                console.log("You win Rock beats Scissors");
+                p.textContent = "You win Rock beats Scissors";
                 return true;
             }
             else if(player_choice === "paper"){
-                 console.log("You lose Scissors beats Paper");
+                 p.textContent = "You lose Scissors beats Paper";
                  return false;
             }
             else if(player_choice === "scissors"){
-                return "Draw";
+                p.textContent = "Draw";
             }
             else{
-                return "Incorrect input";
+                p.textContent = "Incorrect input";
             }
             break;
           /**You must write a case for Scissors */

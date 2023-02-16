@@ -44,10 +44,17 @@ document.body.appendChild(container);
 let p  = document.createElement('p');
 container.appendChild(p);
 
+let win = 0;
+let loss = 0;
 
+let wins = document.createElement('p');
+let losses = document.createElement('p');
+
+
+container.appendChild(wins);
+container.appendChild(losses);
 
 console.log(container);
-
 
 
 function getComputerChoice(){
@@ -58,7 +65,7 @@ function getComputerChoice(){
             descision = "Scisssors";
             break;
         case 1:
-            descision= "Rock";
+            descision = "Rock";
             break;
         case 0:
             descision = "Paper";
@@ -72,10 +79,68 @@ function getPlayerChoice(decison){
     //choice = choice.toLowerCase();
     return choice;
 }
+/*
+function resetGame(){
+        win = 0;
+        loss = 0;
+        wins.textContent = "wins:" + win;
+        losses.textContent = "cpu wins:" + loss;
+        p.textContent = "";
+        const playAgain = document.querySelector('#play-again');        
+}
+*/
+
+function checkWinner(){
+    if(win === 5 && loss < 5){
+        p.textContent = "You won!";
+        //This is a dom method to create a button called play again which should reset the game 
+        const playAgain = document.createElement('button'); //here the play again button is created to restart the game 
+        playAgain.textContent = "play agian";
+        playAgain.classList.add('playAgain');
+        container.appendChild(playAgain);
+        playAgain.addEventListener('click',function(){
+            win = 0;
+            loss = 0;
+            wins.textContent = "wins:" + win;
+            losses.textContent = "cpu wins:" + loss;
+            playAgain.style.display = 'none';}
+            );   
+        
+    }
+    else if(loss == 5 && loss > win){
+        p.textContent = "You lose!";
+        const playAgain = document.createElement('button'); //here the play again button is created to restart the game 
+        playAgain.textContent = "play agian";
+        playAgain.classList.add('playAgain');
+        container.appendChild(playAgain);
+        playAgain.addEventListener('click',function(){
+            win = 0;
+            loss = 0;
+            wins.textContent = "wins:" + win;
+            losses.textContent = "cpu wins:" + loss;
+            playAgain.style.display = 'none';}
+            );   
+        
+    }
+    else if(loss == 5 && loss === win){
+        p.textContent = "It's a tie!";
+        const playAgain = document.createElement('button'); //here the play again button is created to restart the game 
+        playAgain.textContent = "play agian";
+        playAgain.classList.add('playAgain');
+        container.appendChild(playAgain);
+        playAgain.addEventListener('click',function(){
+            win = 0;
+            loss = 0;
+            wins.textContent = "wins:" + win;
+            losses.textContent = "cpu wins:" + loss;
+            playAgain.style.display = 'none';}
+            );   
+    }
+}
 
 /**Debug below: logic not working for rock*/
-function play(player_choice, computer_choice){
-
+function play(player_choice, computer_choice){ 
+    
     switch(computer_choice){ // the switch staement wikk compare the computer's choice to the cases
         case "Paper": // if paper  
             if(player_choice === "paper"){ // if player choise is paper out draw
@@ -85,11 +150,19 @@ function play(player_choice, computer_choice){
             else if(player_choice === "rock"){
                  //console.log("You lose Paper beats Rock");
                  p.textContent = "You lose Paper beats Rock";
+                 loss+=1;
+                 console.log(loss);
+                 losses.textContent = "cpu wins:" + loss;
+                 checkWinner();
                  return false;
             }
             else if(player_choice === "scissors"){
                  //console.log("You win Scissors beats Paper");
                  p.textContent = "You win Scissors beats Paper";
+                 win+=1;
+                 console.log(win);
+                 wins.textContent = "wins:" + win;
+                 checkWinner();
                  return true
             }
             else{
@@ -105,10 +178,18 @@ function play(player_choice, computer_choice){
             }
             else if(player_choice === "paper"){
                  p.textContent ="You win Paper bears Rock";
+                 win+=1;
+                 console.log(win);
+                 wins.textContent = "wins:" + win;
+                 checkWinner();
                  return true;
             }
             else if(player_choice === "scissors"){
                  p.textContent = "you lose rock beats Scissors";
+                 loss+=1;
+                 console.log(loss);
+                 losses.textContent = "cpu wins:" + loss;
+                 checkWinner();
                  return false;
             }
             else{
@@ -119,10 +200,18 @@ function play(player_choice, computer_choice){
         case "Scisssors": // if Rock  
             if(player_choice === "rock"){ // if player choise is paper out draw
                 p.textContent = "You win Rock beats Scissors";
+                win+=1;
+                console.log(win);
+                wins.textContent = "wins:" + win;
+                checkWinner();
                 return true;
             }
             else if(player_choice === "paper"){
                  p.textContent = "You lose Scissors beats Paper";
+                 loss+=1;
+                 console.log(loss);
+                 losses.textContent = "cpu wins:" + loss;
+                 checkWinner();
                  return false;
             }
             else if(player_choice === "scissors"){
@@ -138,55 +227,14 @@ function play(player_choice, computer_choice){
 
     function playRound(playerChoice, computerChoice){
         play(playerChoice,computerChoice);
-
     }
-
-/*
-    function game(player_decision){
-        let win = 0;
-        let loss = 0;
-        let round = 0;
-        
-        for(let round = 1; round < 5; round++){
-            //let player_decision = getPlayerChoice();
-            let computer_decision  = getComputerChoice();
-            let result = play(player_decision,computer_decision);
-            if(result === true){
-                win+=1;
-                //console.log("Round: " + round + " Player 1 wins")
-            }
-            else if(result === false){
-                loss+=1;
-                //console.log("Round: " + round + " Computer wins")
-            }
-            //console.log(round);
-        }  
-        //console.log('You have won ' + win + ' times');
-        //console.log('You have lost ' + loss + ' times');
-        const message = document.createElement('p');
-        if(round >=5 && win > loss){
-            message.textContent = 'You have won ' + win + ' times';
-        }
-        else if(round >=5&& loss > win){
-            messgae.textContent = 'You have lost ' + loss + ' times';
-        }
-        else if(round === 5 && loss === win){
-            message.textContent = "Draw"
-        }
-        
-        container.appendChild(message);
-        const lostMessgae  = document.createElement('p');
-    }
-    */
-
 
     //The section below shows the different choices between rock, paper and scissors 
         const rock = document.querySelector('#rock');
         rock.addEventListener('click',function(){
         let playerDecison = getPlayerChoice('rock'); // Here the player's choice is already set before round is played 
-        let computerDecision = getComputerChoice();
+        let computerDecision = getComputerChoice(); 
         playRound(playerDecison,computerDecision);
-           
         });
 
         const paper = document.querySelector('#paper');
@@ -194,17 +242,16 @@ function play(player_choice, computer_choice){
         let playerDecison = getPlayerChoice('paper'); // Here the player's choice is already set before round is played 
         let computerDecision = getComputerChoice();
         playRound(playerDecison,computerDecision);
-        
         });
 
         const scissors = document.querySelector('#scissors');
         scissors.addEventListener('click',function(){
         let playerDecison = getPlayerChoice('scissors'); // Here the player's choice is already set before round is played 
         let computerDecision = getComputerChoice();
-        playRound(playerDecison,computerDecision);  
+        playRound(playerDecison,computerDecision);
         });
         
-        //
+    
         
         
 

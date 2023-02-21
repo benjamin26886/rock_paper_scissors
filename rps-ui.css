@@ -1,5 +1,99 @@
-.container{
-    background-color: aqua;
-    width: 500px;
-    height: 600px;
+body{
+    margin: 0;
+    
+    justify-content: center;
+    align-items: center;
+    background-color:paleturquoise; /* replace with your desired color */
 }
+.tagLine{
+    margin-top: 0%;
+    display: flex;
+    background: palevioletred;
+    justify-content: center;
+    align-items: center;
+    /*font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
+    font-family:'Courier New', Courier, monospace;
+    margin-bottom: 0%;
+}
+.wins{
+    font-size: 25px;
+}
+
+.losses{
+    font-size: 25px;
+}
+.container{
+    margin-top: 0%;
+    display: flex;
+    background-color:#aaf0d1;
+    align-items: center;
+    justify-content: space-between;
+    /*margin-top: 100px; */
+    width: 100%;
+    height: 200px;
+    margin-bottom: 0%;
+}
+.animated-gif {
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: white;
+    border: none;
+    color: white;
+    padding: 1px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 30px;
+    width: 75px;
+    height: 75px;
+    margin: 0 50px;
+  }
+  
+  .animated-gif img {
+    width: 70%;
+    height: auto;
+  }
+
+  .player img{
+    width: 100%;
+    height: 100%;
+  }
+
+ .bodyContainer{
+     display: flex;
+     width: 100%;
+     height: 200px;
+     background: salmon;
+ }
+
+ .container3{
+    margin-top: 0%; 
+    background: slateblue;
+    width: 200px;
+    height: 200px;    
+ }
+ .container3:hover{
+     background: teal;
+ }
+
+  .animated-gif:hover{
+      background: #FFF1E6;
+  }
+
+    .container2{
+      margin-top: 0%;
+      margin-right: auto;  
+      background-color: violet;
+      width: 200px;
+      height: 200px;     
+  }
+  .container2:hover{
+      background: chartreuse;
+  }
+  .player{
+      width: 200px;
+      height: 200px;
+  }

@@ -36,25 +36,39 @@ console.log(computer_decision);
 console.log(result);
 */
 
+const bodyContainer = document.createElement('div');
+bodyContainer.classList.add('bodyContainer');
+document.body.appendChild(bodyContainer);
 
-const container = document.createElement('div');
-container.style.cssText = 'color: blue; background: green; width: 200px; height: 200px';
-document.body.appendChild(container);
+const container2 = document.createElement('div');
+//container2.style.cssText = 'color: blue; background: green; width: 200px; height: 200px';
+container2.classList.add('container2');
+//container2.style.display = 'none'; //since the display property is set to none you cant see the container 
+bodyContainer.appendChild(container2);
 
 let p  = document.createElement('p');
-container.appendChild(p);
+container2.appendChild(p);
+
+const container3 = document.createElement('div');
+container3.classList.add('container3');
+bodyContainer.appendChild(container3);
+
 
 let win = 0;
 let loss = 0;
 
 let wins = document.createElement('p');
+wins.classList.add('wins');
+
 let losses = document.createElement('p');
+losses.classList.add('losses');
 
 
-container.appendChild(wins);
-container.appendChild(losses);
 
-console.log(container);
+container2.appendChild(wins); // User wins will be added to container 2
+container3.appendChild(losses); // Computer wins will be added to conatiner 3 
+
+console.log(container2);
 
 
 function getComputerChoice(){
@@ -79,16 +93,6 @@ function getPlayerChoice(decison){
     //choice = choice.toLowerCase();
     return choice;
 }
-/*
-function resetGame(){
-        win = 0;
-        loss = 0;
-        wins.textContent = "wins:" + win;
-        losses.textContent = "cpu wins:" + loss;
-        p.textContent = "";
-        const playAgain = document.querySelector('#play-again');        
-}
-*/
 
 function checkWinner(){
     if(win === 5 && loss < 5){
@@ -97,25 +101,26 @@ function checkWinner(){
         const playAgain = document.createElement('button'); //here the play again button is created to restart the game 
         playAgain.textContent = "play agian";
         playAgain.classList.add('playAgain');
-        container.appendChild(playAgain);
+        container2.appendChild(playAgain);
         playAgain.addEventListener('click',function(){
             win = 0;
             loss = 0;
+            p.textContent = "";
             wins.textContent = "wins:" + win;
             losses.textContent = "cpu wins:" + loss;
             playAgain.style.display = 'none';}
             );   
-        
     }
     else if(loss == 5 && loss > win){
         p.textContent = "You lose!";
         const playAgain = document.createElement('button'); //here the play again button is created to restart the game 
         playAgain.textContent = "play agian";
         playAgain.classList.add('playAgain');
-        container.appendChild(playAgain);
+        container2.appendChild(playAgain);
         playAgain.addEventListener('click',function(){
             win = 0;
             loss = 0;
+            p.textContent = "";
             wins.textContent = "wins:" + win;
             losses.textContent = "cpu wins:" + loss;
             playAgain.style.display = 'none';}
@@ -127,10 +132,11 @@ function checkWinner(){
         const playAgain = document.createElement('button'); //here the play again button is created to restart the game 
         playAgain.textContent = "play agian";
         playAgain.classList.add('playAgain');
-        container.appendChild(playAgain);
+        container2.appendChild(playAgain);
         playAgain.addEventListener('click',function(){
             win = 0;
             loss = 0;
+            p.textContent = "";
             wins.textContent = "wins:" + win;
             losses.textContent = "cpu wins:" + loss;
             playAgain.style.display = 'none';}
